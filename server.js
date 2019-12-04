@@ -25,7 +25,6 @@ function gatekeeper(req, res, next) {
 }
 
 // server.use(logger);
-server.use(gatekeeper);
 server.use(express.json()); //built in middleware
 // server.use(helmet()); //use middleware here for it to apply to everything
 //endpoints
@@ -45,7 +44,7 @@ server.get("/echo", (req, res) => {
   res.send(req.headers);
 });
 
-server.get("/secret", gatekeeper(), helmet(), (req, res) => {
+server.get("/secret", gatekeeper, helmet(), (req, res) => {
   // put middleware here for specific route
   res.send(req.headers);
 });
