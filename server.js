@@ -16,12 +16,12 @@ const server = express();
 // if not send bac 401 and a message
 
 function gatekeeper(req, res, next) {
-  if (req.password === "mellon") {
+  if (req.headers.password === "mellon") {
     res.send(200);
+    next();
   } else {
     res.send(404).json({ message: "Wrong password" });
   }
-  next();
 }
 
 // server.use(logger);
